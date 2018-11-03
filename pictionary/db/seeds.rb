@@ -1,7 +1,32 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+User.destroy_all
+
+u1 = User.create name: "Hannah", email: "Hannah@pictionary.co", password: "chicken"
+
+u2 = User.create name: "Andy",
+email: "Andy@pictionary.co", password: "chicken"
+
+puts "#{User.all.length} users"
+
+Word.destroy_all
+
+w1 = Word.create word: "Dog"
+w2 = Word.create word: "Cat"
+w3 = Word.create word: "Apple"
+w4 = Word.create word: "Bread"
+w5 = Word.create word: "Star"
+
+puts "#{Word.all.length} words"
+
+Drawing.destroy_all
+
+d1 = Drawing.create image: "https://placebear.com/400/400", user_id: u1, word_id: w1
+
+d1 = Drawing.create image: "https://placebear.com/400/400", user_id: u2, word_id: w2
+
+d1 = Drawing.create image: "https://placebear.com/400/400", user_id: u2, word_id: w3
+
+d1 = Drawing.create image: "https://placebear.com/400/400", user_id: u1, word_id: w4
+
+d1 = Drawing.create image: "https://placebear.com/400/400", user_id: u2, word_id: w5
+
+puts "#{Drawing.all.length} drawings"
