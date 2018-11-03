@@ -19,5 +19,6 @@ class DrawingsController < ApplicationController
   end
 
   def draw
+    @word = Word.find params[:id]
   end
 end

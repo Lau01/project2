@@ -1,0 +1,21 @@
+<h1>Gallery</h1>
+
+<div class="main-container">
+  <div class="words-list">
+    <ul>
+      <% @words.each do |word| %>
+        <li class="word" value="<%= word.id %>">
+          <%= word.word %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="gallery-container">
+    <% @drawings.each do |drawing| %>
+      <div class="drawing">
+        <%= link_to image_tag(drawing.image), drawing_path(drawing) %>
+      </div>
+    <% end %>
+  </div>
+</div>
