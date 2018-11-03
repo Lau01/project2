@@ -10,11 +10,15 @@ class UsersController < ApplicationController
 
     if user.persisted?
       session[:user_id] = user.id
+      redirect_to root_path
     else
       flash[:errors] = user.errors.full_messages
       redirect_to new_user_path
     end
-    redirect_to login_path
+  end
+
+  def show
+    @user = User.find params[:id]
   end
 
   def edit

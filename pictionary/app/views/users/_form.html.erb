@@ -1,0 +1,37 @@
+<div>
+  <%= form_for @user do |f| %>
+
+    <fieldset>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </fieldset>
+
+    <fieldset>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </fieldset>
+
+    <fieldset>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </fieldset>
+
+    <fieldset>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </fieldset>
+
+    <%= f.submit %>
+  <% end %>
+</div>
+
+<div>
+  <% if flash[:errors].present?  %>
+     <strong>Please correct the following errors:</strong>
+     <ul>
+     <% flash[:errors].each do |error| %>
+       <li><%= error %></li>
+     <% end %>
+   </ul>
+  <% end %>
+</div>

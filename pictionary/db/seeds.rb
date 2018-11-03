@@ -1,9 +1,9 @@
 User.destroy_all
 
-u1 = User.create name: "Hannah", email: "Hannah@pictionary.co", password: "chicken"
+u1 = User.create name: "Hannah", email: "hannah@pictionary.co", password: "chicken"
 
 u2 = User.create name: "Andy",
-email: "Andy@pictionary.co", password: "chicken"
+email: "andy@pictionary.co", password: "chicken"
 
 puts "#{User.all.length} users"
 
