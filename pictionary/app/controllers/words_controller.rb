@@ -1,7 +1,7 @@
 class WordsController < ApplicationController
   def index
     @words = Word.all.order(:word)
-    @drawings = Drawing.all.sample(4)
+    @drawings = Drawing.all.sample(6)
   end
 
   def show

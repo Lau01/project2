@@ -11,10 +11,14 @@
     </ul>
   </div>
 
+  <div class="lightbox-container">
+    <div class="modal"></div>
+  </div>
+
   <div class="gallery-container">
     <% @drawings.each do |drawing| %>
-      <div class="drawing">
-        <%= link_to image_tag(drawing.image), drawing_path(drawing) %>
+      <div class="gallery-drawing">
+        <%= image_tag drawing.image, class: 'drawing-icon', id: drawing.id, alt: drawing.word.word %>
       </div>
     <% end %>
   </div>
