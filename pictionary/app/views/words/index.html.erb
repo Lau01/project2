@@ -1,0 +1,25 @@
+<h1>Gallery</h1>
+
+<div class="main-container">
+  <div class="words-list">
+    <ul>
+      <% @words.each do |word| %>
+        <li class="word" value="<%= word.id %>">
+          <%= word.word %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="lightbox-container">
+    <div class="modal"></div>
+  </div>
+
+  <div class="gallery-container">
+    <% @drawings.each do |drawing| %>
+      <div class="gallery-drawing">
+        <%= image_tag drawing.image, class: 'drawing-icon', id: drawing.id, alt: drawing.word.word %>
+      </div>
+    <% end %>
+  </div>
+</div>
