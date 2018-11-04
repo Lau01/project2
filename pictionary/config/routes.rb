@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/drawing/start' => 'drawings#start', as: 'start'
   get '/drawing/draw/:id' => 'drawings#draw', as: 'draw'
 
-  resources :words, only: [:index]
+  resources :words, only: [:index, :show]
 
   get '/login' => 'session#new'
   post '/login' => 'session#create'
