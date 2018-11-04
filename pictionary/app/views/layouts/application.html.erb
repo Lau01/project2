@@ -13,7 +13,9 @@
     <nav>
       <% if @current_user.present? %>
         <%= link_to 'Log Out', login_path, method: 'delete' %>
+        <%= link_to 'Edit Details', edit_user_path(@current_user) %>
       <% else %>
+        <%= link_to 'New User', new_user_path %>
         <%= link_to 'Login', login_path  %>
       <% end %>
 
