@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
 
+  # Serve websocket cable requests in-process
+  mount ActionCable.server => '/cable'
+
+  root to: 'games#new'
+
   resources :games, only: [:new, :show, :update, :create]
-  get 'game/wait' => 'games#wait', as:'wait'
+  get 'game/wait' => 'games#wait', as: 'wait'
   get 'game/ready/:id' => 'games#ready', as: 'ready'
   get 'game/result' => 'games#result', as:'result'
   get 'game/play/:id' => 'games#play', as:'play'
 
-  root to: 'games#new'
 
   get '/pages/home' => 'pages#home'
 
