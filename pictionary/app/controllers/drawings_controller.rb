@@ -1,4 +1,6 @@
 class DrawingsController < ApplicationController
+  before_action :fetch_word, only: [:start]
+
   def new
     @drawing = Drawing.new
   end
@@ -16,10 +18,16 @@ class DrawingsController < ApplicationController
   end
 
   def start
-    @word = Word.all.sample
+    @current_word = @word
   end
 
   def draw
     @word = Word.find params[:id]
   end
+
+  private
+  def fetch_word
+    @word = Word.all.sample
+  end
+
 end

@@ -78,6 +78,7 @@ $(document).ready(function() {
 
   $('#nextButton').on('click', function() {
     let dataURL = canvas.toDataURL();
+    $('#imageField > *').val(dataURL)
 
     // $.ajax({
     //   type: "POST",

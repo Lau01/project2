@@ -2,15 +2,18 @@
 
 <button id="saveButton" type="button">Save</button>
 <button id="clearButton" type="button">Clear</button>
-<%= form_for @drawing do |f|%>
 
-<%= f.hidden_field :image, value:"" %>
+<%= form_for @drawing, html: {multipart: true} do |f|%>
 
-<%= f.hidden_field :user_id, value:"#{@current_user}" %>
+  <div id="imageField">
+    <%= f.hidden_field :image, value:"" %>
+  </div>
 
-<%= f.hidden_field :word_id, value:"#{@word.id}" %>
+  <%= f.hidden_field :user_id, value:"#{@current_user}" %>
 
-<%= f.submit %>
+  <%= f.hidden_field :word_id, value:"#{@word.id}" %>
+
+  <%= f.submit %>
 
 <% end %>
 
