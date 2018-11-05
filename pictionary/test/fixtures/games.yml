@@ -3,7 +3,9 @@
 one:
   drawer_id: 1
   guesser_id: 1
+  status: 1
 
 two:
   drawer_id: 1
   guesser_id: 1
+  status: 1
