@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
-  root to: 'pages#home'
+  resources :games, only: [:new, :show, :update, :create]
+  get 'game/wait' => 'games#wait', as:'wait'
+  get 'game/ready/:id' => 'games#ready', as: 'ready'
+  get 'game/result' => 'games#result', as:'result'
+  get 'game/play/:id' => 'games#play', as:'play'
+
+  root to: 'games#new'
 
   get '/pages/home' => 'pages#home'
 

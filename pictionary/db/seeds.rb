@@ -30,3 +30,6 @@ d1 = Drawing.create image: "https://placebear.com/400/400", user_id: u1, word_id
 d1 = Drawing.create image: "https://placebear.com/400/400", user_id: u2, word_id: w5
 
 puts "#{Drawing.all.length} drawings"
+
+
+Game.destroy_all

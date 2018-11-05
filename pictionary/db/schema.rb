@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2018_11_05_054639) do
   create_table "games", force: :cascade do |t|
     t.integer "drawer_id"
     t.integer "guesser_id"
+    t.integer "word_id"
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
