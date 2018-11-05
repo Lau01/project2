@@ -29,8 +29,9 @@ $(document).ready(() => {
   });
 
   /////  GALLERY IMAGE CLICK HANDLER
-  $(document).on('click', 'img.drawing-icon', function() {
-    $('div.lightbox-container').show();
-  });
+  ////   To implement if we want a show page (or lightbox) for each drawing
+  // $(document).on('click', 'img.drawing-icon', function() {
+  //   console.log($(this)[0].id);
+  // });
 
 }); // $(document).ready

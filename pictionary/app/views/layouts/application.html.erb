@@ -10,15 +10,22 @@
   </head>
 
   <body class="<%= controller_name %> <%= action_name %>">
+
     <nav>
-      <%= link_to 'Gallery', words_path %>
-       | 
+      <%= link_to 'All Drawings', words_path %>
+       |
       <% if @current_user.present? %>
+        <%= link_to 'My Drawings', user_gallery_path %>
+         |
         <%= link_to 'Log Out', login_path, method: 'delete' %>
       <% else %>
         <%= link_to 'Login', login_path  %>
+         |
+        <%= link_to 'Sign Up', new_user_path %>
       <% end %>
     </nav>
+
     <%= yield %>
+
   </body>
 </html>
