@@ -25,3 +25,17 @@
 body {
   margin: 30px;
 }
+
+fieldset {
+  border: none;
+}
+
+.login-container {
+  width: 300px;
+  border:
+}
+
+.login-container label {
+  width: 100px;
+  display: inline-block;
+}
