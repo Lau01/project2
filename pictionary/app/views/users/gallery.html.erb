@@ -1,0 +1,17 @@
+<h2>My Drawings</h2>
+
+<div class="gallery-container">
+
+  <% if @drawings.present? %>
+    <% @drawings.each do |drawing| %>
+      <div class="gallery-drawing">
+        <%= image_tag drawing.image, class: 'drawing-icon', id: drawing.id, alt: drawing.word.word %>
+        <span><%= drawing.word.word %> | Drawn on <%= drawing.created_at.strftime("%b %d, %Y") %></span>
+      </div>
+    <% end %>
+
+  <% else %>
+    <p>You don't have any drawings yet.</p>
+  <% end %>
+
+</div>

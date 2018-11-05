@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   delete '/login' => 'session#destroy'
 
   resources :users, except: [:index]
-
+  get '/user/gallery' => 'users#gallery'
 end

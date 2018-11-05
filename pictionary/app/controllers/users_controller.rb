@@ -43,7 +43,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def gallery
+    # Ensures only logged-in users can get to the user's gallery page
+    unless @current_user.present?
+      redirect_to login_path
+      return
+    end
+
+    @drawings = User.find_by(id: @current_user).drawings
+  end
+
   private
+
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
