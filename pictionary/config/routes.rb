@@ -13,15 +13,14 @@ Rails.application.routes.draw do
   get 'game/home' => 'games#home', as: 'home'
   get 'game/wait/:id' => 'games#wait', as: 'wait'
   get 'game/play/:id' => 'games#play', as:'play'
-  get 'game/result/:id' => 'games#result', as:'result'
+  post 'game/:id/result' => 'games#result', as:'result'
+  get 'game/:id/result' => 'games#result', as:'result'
 
   resources :words, only: [:index, :show]
   resources :drawings, except: [:edit, :update]
   # get '/drawing/start' => 'drawings#start', as: 'start'
   # get '/drawing/draw/:id' => 'drawings#draw', as: 'draw'
 
-
   resources :users, except: [:index]
   get '/user/gallery' => 'users#gallery'
-
 end
