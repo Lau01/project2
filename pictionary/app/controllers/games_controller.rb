@@ -21,13 +21,14 @@ class GamesController < ApplicationController
     # if so update the game's guesser_id and status
     last_game = Game.last
 
+
     if last_game.status == 'waiting'
       last_game.update(
         guesser_id: @current_user.id,
         status: 'playing'
       )
 
-      redirect_to play_path(last_game.id)
+      redirect_to game_play_path(last_game.id)
       return
     end
 
@@ -43,7 +44,7 @@ class GamesController < ApplicationController
 
     if game.save
       ### ACTIONCABLE
-      redirect_to wait_path(game.id)
+      redirect_to game_wait_path(game.id)
     end
 
     ### Check that drawer hasn't gone back and created a new game
@@ -55,8 +56,23 @@ class GamesController < ApplicationController
     @game = Game.find params[:id]
   end
 
+
+
   def play
     @game = Game.find params[:id]
+  end
+
+  def over
+    # raise 'hell'
+    puts (params[:drawingData])
+    render json: {status: 'ok'}
+
+    @game = Game.find params[:id]
+
+    response = Cloudinary::Uploader.upload(params[:drawingData])
+
+    @game.image = response["public_id"]
+    @game.save
   end
 
   def result

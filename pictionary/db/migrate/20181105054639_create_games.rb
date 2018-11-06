@@ -5,6 +5,8 @@ class CreateGames < ActiveRecord::Migration[5.2]
       t.integer :guesser_id
       t.integer :word_id
       t.integer :status
+      t.string :result
+      t.string :image
 
       t.timestamps
     end

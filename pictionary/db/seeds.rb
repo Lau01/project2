@@ -33,3 +33,5 @@ puts "#{Drawing.all.length} drawings"
 
 
 Game.destroy_all
+
+g1 = Game.create drawer_id: u1, guesser_id: u2, word_id: w2, status: 'waiting', result: 'win', image: 'https://placekitten.com/200/300'

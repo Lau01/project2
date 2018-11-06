@@ -1,2 +1,7 @@
-<h1>Games#result</h1>
-<p>Find me in app/views/games/result.html.erb</p>
+<% if @current_user == @game.guesser_id %>
+  <%= render partial: 'resultguesser' %>
+<% elsif @current_user == @game.drawer_id %>
+  <%= render partial: 'resultdrawer' %>
+<% end %>
+
+<%= cl_image_tag @game.image, class: "overImage" %>

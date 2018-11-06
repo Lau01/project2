@@ -1,3 +1,123 @@
+<script>
+
+  const currentWord = "<%= @game.word.word %>";
+
+  $(document).ready(function() {
+
+    $('#canvasContainer').append("<canvas id='canvasElement'></canvas>");
+    const canvas = document.getElementById("canvasElement");
+    const ctx = canvas.getContext("2d");
+
+    let offsetX = $('#canvasElement').offset().left;
+    let offsetY = $('#canvasElement').offset().top;
+
+    console.log(offsetX)
+    // resize canvas when window is resized
+    function resizeWindow() {
+      ctx.canvas.width = window.innerWidth;
+      ctx.canvas.height = window.innerHeight;
+      offsetX = $('#canvasElement').offset().left;
+      offsetY = $('#canvasElement').offset().top;
+    };
+
+    resizeWindow();
+
+    // last known x, y pos
+    const canvasApp = {
+      pos: {
+        x: 0,
+        y: 0
+      },
+
+      setPosition: function(event) {
+        this.pos.x = event.pageX - offsetX;
+        this.pos.y = event.pageY - offsetY;
+      },
+
+      drawOnMove: function(event) {
+
+        if (event.which !== 1) return; //which === 1 when left click down
+
+        ctx.beginPath(); // begin the drawing path
+
+        ctx.lineWidth = 5; // width of line
+        ctx.lineCap = "round"; // rounded end cap
+
+        ctx.moveTo(this.pos.x, this.pos.y); // from position
+        this.setPosition(event); // set new pos
+        ctx.lineTo(this.pos.x, this.pos.y); // to position
+
+        ctx.stroke(); // draw
+      },
+
+      // for initial click, draw a circle
+      drawOnClick: function(event) {
+        ctx.beginPath();
+        ctx.arc(this.pos.x, this.pos.y, 0.5, 0, 2*Math.PI); // draws circle
+        ctx.fill(); // fill circle
+        ctx.stroke();
+      }
+    }; //canvasApp
+
+    // change canvas to window height/width
+    $(window).resize(function() {
+      resizeWindow();
+    });
+
+    // mouse down draws a single circle and sets last known x,y pos as the clicked pos
+    $('#canvasElement').mousedown(event => {
+      canvasApp.setPosition(event);
+      canvasApp.drawOnClick(event);
+    });
+
+    // mouse enter sets last known x,y pos as the entered pos
+    $('#canvasElement').mouseenter(event => {
+      canvasApp.setPosition(event)
+    });
+
+    // on mouse move draws a line from last known x,y to new x,y pos set in the drawOnMove function
+    $('#canvasElement').mousemove(event => {
+      canvasApp.drawOnMove(event);
+    });
+
+    $('#clearButton').on('click', function() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+
+
+    $('.guessButton').on('click', function(){
+
+        if (currentWord === $('.guessField').val()) {
+
+        canvas.toBlob(function(blob){
+          // when the blob is ready:
+
+          console.log( blob );
+
+          const fd = new FormData();
+          fd.append('drawingData', blob); //
+
+          // ajax POST to games. change result column to 'Win' or 'Lose' ?? %>
+          $.ajax({
+            type: "POST",
+            url: "<%= game_over_path(@game) %>",
+            data: fd,
+            processData: false,
+            contentType: false
+          })
+          .done(window.location.href = "<%= game_result_path(@game) %>"); // save image and redirect to result page???
+        });  // toBlob callback
+
+      }
+
+      return false;
+    }); //click
+
+
+  }); //document ready
+
+</script>
+
 <h2><%= @game.word.word %></h2>
 
 <button id="saveButton" type="button">Save</button>
@@ -8,14 +128,5 @@
 
 <div class="timer"></div>
 
-<script>
-  const gameId = <%= @game %>;
-  const currentWord = <%= @game.word.word %>;
-</script>
-
-<%= text_field_tag, class: 'guessField' %>
-<%= button_tag, 'Guess', class: 'guessButton' %>
-
-
-
-<%= link_to 'Next', result_path(@game) %>
+<%= text_field_tag 'guess', 'Cat', class: 'guessField' %>
+<%= button_tag 'Guess', class: 'guessButton' %>

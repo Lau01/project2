@@ -1,7 +1,7 @@
 
 <% if @current_user == @game.guesser_id %>
   <%= render partial: 'readyguesser' %>
-<% else %>
+<% elsif @current_user == @game.drawer_id %>
   <%= render partial: 'readydrawer' %>
 <% end %>
 

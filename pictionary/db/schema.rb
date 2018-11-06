@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2018_11_05_054639) do
     t.integer "guesser_id"
     t.integer "word_id"
     t.integer "status"
+    t.string "result"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

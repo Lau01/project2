@@ -6,9 +6,13 @@ Rails.application.routes.draw do
   root to: 'games#home'
 
   resources :games, only: [:new, :show, :update, :create]
-  get 'game/wait' => 'games#wait', as: 'wait'
-  get 'game/ready/:id' => 'games#ready', as: 'ready'
-  get 'game/play/:id' => 'games#play', as:'play'
+  get '/games/wait' => 'games#wait', as: 'game_wait'
+  get '/games/:id/ready' => 'games#ready', as: 'game_ready'
+  get '/games/:id/play' => 'games#play', as:'game_play'
+  post '/games/:id/result' => 'games#over', as: 'game_over'
+  get '/games/:id/result' => 'games#result', as: 'game_result'
+
+
 
 
   get '/pages/home' => 'pages#home'
