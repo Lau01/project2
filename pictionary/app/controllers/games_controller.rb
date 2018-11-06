@@ -6,9 +6,6 @@ class GamesController < ApplicationController
     render :home
   end
 
-  def show
-  end
-
   def create
     # Check that the user is logged in
     unless @current_user.present?
@@ -23,10 +20,12 @@ class GamesController < ApplicationController
 
 
     if last_game.status == 'waiting'
-      last_game.update(
-        guesser_id: @current_user.id,
-        status: 'playing'
-      )
+      # If the last game is waiting for a guesser, we become that guesser, and redirect to the play action.
+      # (the play action will load the guesser template for this user, and the template will send a
+      # websockets message to the server when it is ready to start the game, i.e. as soon as the websocket
+      # connection is ready)
+      # When that message is received in games_channel.rb, it updates the status for this game to 'playing'
+      last_game.update guesser: @current_user
 
       redirect_to game_play_path(last_game.id)
       return
@@ -43,8 +42,7 @@ class GamesController < ApplicationController
     )
 
     if game.save
-      ### ACTIONCABLE
-      redirect_to game_wait_path(game.id)
+      redirect_to play_path(game.id)
     end
 
     ### Check that drawer hasn't gone back and created a new game
@@ -60,6 +58,9 @@ class GamesController < ApplicationController
 
   def play
     @game = Game.find params[:id]
+
+    @role = @game.get_role(@current_user)
+    render "#{@role}_play"
   end
 
   def over
@@ -79,4 +80,13 @@ class GamesController < ApplicationController
     @game = Game.find params[:id]
   end
 
+  def show
+  end
+
+  private
+  def broadcast(last_game)
+    ActionCable.server.broadcast 'games',
+      status: last_game.status
+    head :ok
+  end
 end
