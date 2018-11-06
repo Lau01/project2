@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   resources :games, only: [:new, :show, :update, :create]
   get 'game/wait' => 'games#wait', as: 'wait'
   get 'game/ready/:id' => 'games#ready', as: 'ready'
-  get 'game/result' => 'games#result', as:'result'
   get 'game/play/:id' => 'games#play', as:'play'
+  get 'game/result:id' => 'games#result', as:'result'
 
 
   get '/pages/home' => 'pages#home'

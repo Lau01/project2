@@ -1,4 +1,4 @@
-<h2><%= @word.word %></h2>
+<h2><%= @game.word_id.word %></h2>
 
 <button id="saveButton" type="button">Save</button>
 <button id="clearButton" type="button">Clear</button>
@@ -7,3 +7,15 @@
 </div>
 
 <div class="timer"></div>
+
+<script>
+  const gameId = <%= @game %>;
+  const currentWord = <%= @game.word_id.word %>;
+</script>
+
+<%= text_field_tag, class: 'guessField' %>
+<%= button_tag, 'Guess', class: 'guessButton' %>
+
+
+
+<%= link_to 'Next', result_path(@game) %>
