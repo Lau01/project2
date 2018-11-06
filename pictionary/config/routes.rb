@@ -5,23 +5,23 @@ Rails.application.routes.draw do
 
   root to: 'games#home'
 
-  resources :games, only: [:show, :update, :create]
-  get 'game/home' => 'games#home', as: 'home'
-  get 'game/wait' => 'games#wait', as: 'wait'
-  get 'game/ready/:id' => 'games#ready', as: 'ready'
-  get 'game/play/:id' => 'games#play', as:'play'
-  get 'game/result' => 'games#result', as:'result'
-
-  resources :drawings, except: [:edit, :update]
-  # get '/drawing/start' => 'drawings#start', as: 'start'
-  # get '/drawing/draw/:id' => 'drawings#draw', as: 'draw'
-
-  resources :words, only: [:index, :show]
-
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
 
+  resources :games, only: [:create, :show]
+  get 'game/home' => 'games#home', as: 'home'
+  get 'game/wait/:id' => 'games#wait', as: 'wait'
+  get 'game/play/:id' => 'games#play', as:'play'
+  get 'game/result/:id' => 'games#result', as:'result'
+
+  resources :words, only: [:index, :show]
+  resources :drawings, except: [:edit, :update]
+  # get '/drawing/start' => 'drawings#start', as: 'start'
+  # get '/drawing/draw/:id' => 'drawings#draw', as: 'draw'
+
+
   resources :users, except: [:index]
   get '/user/gallery' => 'users#gallery'
+
 end
