@@ -34,6 +34,9 @@ class GamesController < ApplicationController
       word_id: random_word.id,
       status: 'waiting'
     )
+    puts "++++++++++++++++++++++++++++++++++"
+    puts game
+    puts "++++++++++++++++++++++++++++++++++"
 
     if game.save
       ### ACTIONCABLE
