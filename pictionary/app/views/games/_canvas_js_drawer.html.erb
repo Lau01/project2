@@ -1,0 +1,23 @@
+<%# This code is just for the drawer - the mouse event handlers that draw on the canvas %>
+<script>
+$(document).ready(function() {
+
+  // mouse down draws a single circle and sets last known x,y pos as the clicked pos
+  $('#canvasElement').mousedown(event => {
+    canvasApp.setPosition(event);
+    canvasApp.drawOnClick(event);
+    App.games.perform('drawer_clicked', {x: 0, y: 0});
+  });
+
+  // mouse enter sets last known x,y pos as the entered pos
+  $('#canvasElement').mouseenter(event => {
+    canvasApp.setPosition(event)
+  });
+
+  // on mouse move draws a line from last known x,y to new x,y pos set in the drawOnMove function
+  $('#canvasElement').mousemove(event => {
+    canvasApp.drawOnMove(event);
+  });
+
+});
+</script>

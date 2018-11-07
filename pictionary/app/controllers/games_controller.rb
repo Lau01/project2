@@ -14,10 +14,8 @@ class GamesController < ApplicationController
       return
     end
 
-    # Check if a game is waiting for a guesser,
-    # if so update the game's guesser_id and status
-    last_game = Game.last
 
+    last_game = Game.last
 
     if last_game.status == 'waiting'
       # If the last game is waiting for a guesser, we become that guesser, and redirect to the play action.
@@ -50,17 +48,14 @@ class GamesController < ApplicationController
     #     @game.guesser_id = @current_user.id
     #   else
     # end
-
-    @game = Game.find params[:id]
   end
-
-
 
   def play
     @game = Game.find params[:id]
 
+    # Get the current user's role as a string
     @role = @game.get_role(@current_user)
-    render "#{@role}_play"
+    render :play
   end
 
   def over
@@ -77,15 +72,5 @@ class GamesController < ApplicationController
 
   def result
     @game = Game.find params[:id]
-  end
-
-  def show
-  end
-
-  private
-  def broadcast(last_game)
-    ActionCable.server.broadcast 'games',
-      status: last_game.status
-    head :ok
   end
 end
