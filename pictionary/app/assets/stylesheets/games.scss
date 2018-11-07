@@ -17,3 +17,16 @@
 h2.drawer_play {
   display: none;
 }
+
+#canvasContainer {
+  position: fixed;
+  top: 150px;
+  left: 0;
+  width: 400px;
+  height: 500px;
+}
+
+#canvasElement {
+  width: 100%;
+  height: 100%;
+}

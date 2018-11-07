@@ -13,17 +13,17 @@
     let offsetX = $('#canvasElement').offset().left;
     let offsetY = $('#canvasElement').offset().top;
 
-    console.log(offsetX)
+    ctx.canvas.width = 400;
+    ctx.canvas.height = 500;
 
     // resize canvas when window is resized
-    function resizeWindow() {
-      ctx.canvas.width = window.innerWidth;
-      ctx.canvas.height = window.innerHeight;
-      offsetX = $('#canvasElement').offset().left;
-      offsetY = $('#canvasElement').offset().top;
-    };
-
-    resizeWindow();
+    // function resizeWindow() {
+    //   ctx.canvas.width = window.innerWidth;
+    //   ctx.canvas.height = window.innerHeight;
+    //   offsetX = $('#canvasElement').offset().left;
+    //   offsetY = $('#canvasElement').offset().top;
+    // };
+    // resizeWindow();
 
     // last known x, y pos
     canvasApp = {
@@ -32,14 +32,14 @@
         y: 0
       },
 
-      setPosition: function(event) {
-        this.pos.x = event.pageX - offsetX;
-        this.pos.y = event.pageY - offsetY;
+      setPosition: function(xPos, yPos) {
+        this.pos.x = xPos - offsetX;
+        this.pos.y = yPos - offsetY;
       },
 
-      drawOnMove: function(event) {
+      drawOnMove: function(userInput, xPos, yPos) {
 
-        if (event.which !== 1) return; //which === 1 when left click down
+        if (userInput !== 1) return; //which === 1 when left click down
 
         ctx.beginPath(); // begin the drawing path
 
@@ -47,31 +47,29 @@
         ctx.lineCap = "round"; // rounded end cap
 
         ctx.moveTo(this.pos.x, this.pos.y); // from position
-        this.setPosition(event); // set new pos
+        this.setPosition(xPos, yPos); // set new pos
         ctx.lineTo(this.pos.x, this.pos.y); // to position
 
         ctx.stroke(); // draw
       },
 
       // for initial click, draw a circle
-      drawOnClick: function(event) {
+      drawOnClick: function() {
         ctx.beginPath();
-        ctx.arc(this.pos.x, this.pos.y, 0.5, 0, 2*Math.PI); // draws circle
+        ctx.arc(this.pos.x, this.pos.y, 0.5, 0, 2 * Math.PI); // draws circle
         ctx.fill(); // fill circle
         ctx.stroke();
+      },
+
+      clearCanvas: function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
     }; //canvasApp
 
     // change canvas to window height/width
-    $(window).resize(function() {
-      resizeWindow();
-    });
-
-
-    $('#clearButton').on('click', function() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    });
-
+    // $(window).resize(function() {
+    //   resizeWindow();
+    // });
 
   }); //document ready
 

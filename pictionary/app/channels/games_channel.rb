@@ -4,14 +4,13 @@ class GamesChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
+    ## TO DO
   end
 
   # Listen for messages sent from the frontend (in JS)
   def guesser_ready(data)
     # This SHOULD find the right game (TODO: pass game ID from frontend instead?)
     game = Game.where(guesser: current_user, status: 'waiting').last
-    puts "GUESSER JOINING GAME:"
-    p game
     game.update status: 'playing'
 
     ## ActionCable will broadcast to the games channel when the game's status is updated
@@ -19,10 +18,21 @@ class GamesChannel < ApplicationCable::Channel
   end
 
   def drawer_clicked(data)
-    puts '++++++++++++++++++++++'
-    puts data
-    puts '++++++++++++++++++++++'
+    ActionCable.server.broadcast 'games', event: data['event'], position: {xPos: data['position']['xPos'], yPos: data['position']['yPos']}
+  end
 
-    # ActionCable.server.broadcast 'games', status: 'playing'
+  def drawer_entered(data)
+    ActionCable.server.broadcast 'games', event: data['event'], position: {xPos: data['position']['xPos'], yPos: data['position']['yPos']}
+  end
+
+  def drawer_moved(data)
+    puts "+++++++++++++++++++++++"
+    puts data
+    puts "+++++++++++++++++++++++"
+    ActionCable.server.broadcast 'games', event: data['event'], position: {xPos: data['position']['xPos'], yPos: data['position']['yPos']}, userInput: data['userInput']
+  end
+
+  def clear_canvas(data)
+      ActionCable.server.broadcast 'games', clear: true
   end
 end

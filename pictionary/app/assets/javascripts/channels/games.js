@@ -16,19 +16,33 @@ $(document).ready(function(){
 
       received: function(data) {
 
-        if(data.status === 'playing') {
+        if(data.status) {
           // Clear the drawer's canvas before the game starts
-          const canvas = document.getElementById("canvasElement");
-          const ctx = canvas.getContext("2d");
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-          console.log('canvasApp', canvasApp);
+          // const canvas = document.getElementById("canvasElement");
+          // const ctx = canvas.getContext("2d");
+          // ctx.clearRect(0, 0, canvas.width, canvas.height);
+          canvasApp.clearCanvas();
 
           $('h2.drawer_wait').hide();
           $('h2.drawer_play').show();
 
           // TIMER
           // setTimeout(function() {alert("Hello");}, 5000);
+        }
+
+        if(data.position) {
+          if(data.event === 'click') {
+            canvasApp.setPosition(data.position.xPos, data.position.yPos);
+            canvasApp.drawOnClick();
+          } else if (data.event === 'mouseenter') {
+            canvasApp.setPosition(data.position.xPos, data.position.yPos);
+          } else {
+            canvasApp.drawOnMove(data.userInput, data.position.xPos, data.position.yPos)
+          }
+        }
+
+        if(data.clear) {
+          canvasApp.clearCanvas();
         }
 
         //else if (data.status == 'finished') {
@@ -38,10 +52,6 @@ $(document).ready(function(){
         //else if (data.status == 'cancelled') {
         //
         // }
-
-        // USE setInterval instead of click handler
-
-        console.log('GAME.JS MESSAGE', data.status);
       },
     });
 

@@ -14,7 +14,6 @@ class GamesController < ApplicationController
       return
     end
 
-
     last_game = Game.last
 
     if last_game.status == 'waiting'
