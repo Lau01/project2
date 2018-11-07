@@ -16,6 +16,8 @@
     ctx.canvas.width = 400;
     ctx.canvas.height = 500;
 
+
+
     // resize canvas when window is resized
     // function resizeWindow() {
     //   ctx.canvas.width = window.innerWidth;
@@ -71,6 +73,86 @@
     //   resizeWindow();
     // });
 
+
+
+    //LEAP BOX
+
+
+    $('#cursor').css({
+      top: offsetY,
+      left: offsetX
+    });
+
+     let controller = new Leap.Controller();
+
+     controller.on("frame", function(frame) {
+
+
+     if (frame.pointables.length > 0) {
+        // canvas.width = canvas.width; //clear
+
+        //Get a pointable and normalize the tip position
+        let pointable = frame.pointables[0];
+        let interactionBox = frame.interactionBox;
+        let normalizedPosition = interactionBox.normalizePoint(pointable.tipPosition, true);
+
+        // Convert the normalized coordinates to span the canvas
+        let canvasX = canvas.width * normalizedPosition[0];
+        let canvasY = canvas.height * (1 - normalizedPosition[1]);
+        //we can ignore z for a 2D context
+
+        if (pointable.tipPosition[2] < 40) {
+          $('#cursor').css({
+            opacity: 1.0
+          });
+          leapApp.drawLeap(canvasX.toFixed(1), canvasY.toFixed(1))
+        } else {
+          leapApp.setLeapPosition(canvasX.toFixed(1), canvasY.toFixed(1))
+          $('#cursor').css({
+            opacity: 0.2,
+          });
+        }
+        $('#cursor').css({
+          display: 'block',
+          top: offsetY + canvasY - 25,
+          left: offsetX + canvasX
+        });
+
+
+      } else {
+        $('#cursor').hide();
+      }
+    });
+    controller.connect();
+
+    const leapApp = {
+
+      pos: {
+        x: null,
+        y: null
+      },
+
+      setLeapPosition: function(x, y) {
+        this.pos.x = x
+        this.pos.y = y
+      },
+
+      drawLeap: function(x, y) {
+        ctx.beginPath(); // begin the drawing path
+        ctx.lineWidth = 5; // width of line
+        ctx.lineCap = "round"; // rounded end cap
+
+        ctx.moveTo(this.pos.x, this.pos.y); // from position
+        this.setLeapPosition(x, y); // set new pos
+        ctx.lineTo(this.pos.x, this.pos.y); // to position
+
+        ctx.stroke(); // draw
+      },
+
+
+    };
+
   }); //document ready
+
 
 </script>

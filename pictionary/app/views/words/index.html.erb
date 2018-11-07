@@ -14,7 +14,7 @@
   <div class="gallery-container">
     <% @games.each do |game| %>
       <div class="gallery-drawing">
-        <%= image_tag game.image, class: 'drawing-icon', id: game.id, alt: game.word %>
+        <%= cl_image_tag game.image, class: 'drawing-icon', id: game.id, alt: game.word %>
       </div>
     <% end %>
   </div>
