@@ -83,10 +83,17 @@
       left: offsetX
     });
 
-     let controller = new Leap.Controller();
+     let controller = new Leap.Controller({enableGestures: true});
 
      controller.on("frame", function(frame) {
-
+       if (frame.gestures.length > 0) {
+        for (var i = 0; i < frame.gestures.length; i++) {
+          var gesture = frame.gestures[i];
+          if(gesture.type == "swipe") {
+            canvasApp.clearCanvas();
+           }
+         }
+      }
 
      if (frame.pointables.length > 0) {
         // canvas.width = canvas.width; //clear
@@ -101,7 +108,7 @@
         let canvasY = canvas.height * (1 - normalizedPosition[1]);
         //we can ignore z for a 2D context
 
-        if (pointable.tipPosition[2] < 40) {
+        if (pointable.tipPosition[2] < 30) {
           $('#cursor').css({
             opacity: 1.0
           });
@@ -109,7 +116,7 @@
         } else {
           leapApp.setLeapPosition(canvasX.toFixed(1), canvasY.toFixed(1))
           $('#cursor').css({
-            opacity: 0.2,
+            opacity: 0.3,
           });
         }
         $('#cursor').css({
