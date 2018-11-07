@@ -1,3 +1,14 @@
-// Place all the styles related to the Games controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.instructionsWrapper {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.headerInstructions {
+  font-size: 2em;
+}
+
+.instructions {
+  font-size: 1.5em;
+}

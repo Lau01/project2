@@ -42,7 +42,7 @@ class GamesController < ApplicationController
     )
 
     if game.save
-      redirect_to play_path(game.id)
+      redirect_to game_play_path(game.id)
     end
 
     ### Check that drawer hasn't gone back and created a new game
@@ -71,7 +71,6 @@ class GamesController < ApplicationController
     @game = Game.find params[:id]
 
     response = Cloudinary::Uploader.upload(params[:drawingData])
-
     @game.image = response["public_id"]
     @game.save
   end

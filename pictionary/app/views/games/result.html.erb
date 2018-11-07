@@ -1,7 +1,8 @@
-<% if @current_user == @game.guesser_id %>
+<% if @current_user.id == @game.guesser_id %>
   <%= render partial: 'resultguesser' %>
-<% elsif @current_user == @game.drawer_id %>
+<% elsif @current_user.id == @game.drawer_id %>
   <%= render partial: 'resultdrawer' %>
 <% end %>
 
 <%= cl_image_tag @game.image, class: "overImage" %>
+<%= link_to 'Play Again', root_path %>

@@ -105,7 +105,7 @@
             processData: false,
             contentType: false
           })
-          .done(window.location.href = "<%= game_result_path(@game) %>"); // save image and redirect to result page???
+          .done(setInterval(window.location.href = "<%= game_result_path(@game) %>"), 1500); // set interval to delay redirect. show user has won
         });  // toBlob callback
 
       }
