@@ -1,8 +1,10 @@
-<% if @current_user.id == @game.guesser_id %>
-  <%= render partial: 'resultguesser' %>
-<% elsif @current_user.id == @game.drawer_id %>
-  <%= render partial: 'resultdrawer' %>
+<% if @game.result === 'won' %>
+  <h2>Yay! You both won!</h2>
+<% elsif @game.result === 'lost' %>
+  <h2>Oh no! You both lost... better luck next time!</h2>
 <% end %>
+
+<h3>Your word was: <%= @game.word.word %></h3>
 
 <%= cl_image_tag @game.image, class: "overImage" %>
 <%= link_to 'Play Again', root_path %>

@@ -42,12 +42,6 @@ class GamesController < ApplicationController
     if game.save
       redirect_to game_play_path(game.id)
     end
-
-    ### Check that drawer hasn't gone back and created a new game
-    #   if @game && (@current_user.id != @game.drawer_id)
-    #     @game.guesser_id = @current_user.id
-    #   else
-    # end
   end
 
   def play
@@ -59,15 +53,16 @@ class GamesController < ApplicationController
   end
 
   def over
-    # raise 'hell'
-    puts (params[:drawingData])
     render json: {status: 'ok'}
 
     @game = Game.find params[:id]
 
     response = Cloudinary::Uploader.upload(params[:drawingData])
-    @game.image = response["public_id"]
-    @game.save
+
+    @game.update image: response["public_id"], result: params[:result], status: "finished"
+
+    # @game.image = response["public_id"]
+    # @game.save
   end
 
   def result
