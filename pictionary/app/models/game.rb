@@ -4,21 +4,12 @@ class Game < ApplicationRecord
   belongs_to :word, optional: true
 
 
-  enum status: ['waiting', 'playing', 'finished']
-
-  # def is_drawer?
+  enum status: ['waiting', 'playing', 'finished', 'cancelled']
 
   def get_role(user)
-    puts "get_role:"
-    puts "user:", user
-    puts "drawer:", drawer
-    return nil unless user && drawer  # error case, one role (ID) is missing
+    # Catch users not logged in and games without a drawer
+    return nil unless user && drawer
 
-    return user == drawer ? 'drawer' : 'guesser'
+    return user == self.drawer ? 'drawer' : 'guesser'
   end
-
-  def self.get_waiting_game
-    Game.all.find_by guesser_id: nil, status: 'waiting'
-  end
-
 end

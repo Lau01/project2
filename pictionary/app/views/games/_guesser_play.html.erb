@@ -1,0 +1,10 @@
+<script>
+  const role = 'guesser';
+</script>
+
+<div class="game_header">
+  <h2 class="guesser_play"><%= @game.guesser.name %> you are guessing!</h2>
+</div>
+
+<%= text_field_tag 'guess', 'Cat', class: 'guessField' %>
+<%= button_tag 'Guess', class: 'guessButton' %>

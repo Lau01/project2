@@ -1,0 +1,35 @@
+<%# This code is just for the guesser - the correct-guess checking code, which also sends an AJAX game over message %>
+<script>
+$(document).ready(function() {
+
+  $('.guessButton').on('click', function(){
+      console.log('guessing!')
+      if (currentWord === $('.guessField').val()) {
+
+      canvas.toBlob(function(blob){
+        // when the blob is ready:
+
+        console.log( blob );
+
+        const fd = new FormData();
+        fd.append('drawingData', blob); //
+
+        // ajax POST to games. change result column to 'Win' or 'Lose' ?? %>
+        $.ajax({
+          type: "POST",
+          url: "<%= game_over_path(@game) %>",
+          data: fd,
+          processData: false,
+          contentType: false
+        })
+        // save image and redirect to result page???
+        .done(window.location.href = "<%= game_result_path(@game) %>");
+      });  // toBlob callback
+
+    }
+
+    return false;
+  }); //click
+
+});
+</script>
