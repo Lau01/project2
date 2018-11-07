@@ -3,6 +3,7 @@
   width: 50%;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .headerInstructions {
@@ -11,6 +12,7 @@
 
 .instructions {
   font-size: 1.5em;
+}
 
 h2.drawer_play {
   display: none;
