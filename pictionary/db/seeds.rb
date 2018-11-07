@@ -34,14 +34,14 @@ puts "#{Word.all.length} words"
 
 Game.destroy_all
 
-g1 = Game.create drawer: u1, guesser: u2, word: w2, status: 'finished', result: 'win', image: '/assets/snail.png'
+g1 = Game.create drawer: u1, guesser: u2, word: w2, status: 'finished', result: 'win', image: 'https://placebear.com/200/200'
 
 g2 = Game.create drawer: u1, guesser: u2, word: w3, status: 'finished', result: 'win', image: 'https://placekitten.com/200/200'
 
-g3 = Game.create drawer: u2, guesser: u1, word: w4, status: 'finished', result: 'win', image: 'https://placekitten.com/200/200'
+g3 = Game.create drawer: u2, guesser: u1, word: w4, status: 'finished', result: 'win', image: 'https://fillmurray.com/200/200'
 
-g4 = Game.create drawer: u2, guesser: u1, word: w1, status: 'finished', result: 'win', image: 'https://placekitten.com/200/200'
+g4 = Game.create drawer: u2, guesser: u1, word: w1, status: 'finished', result: 'win', image: 'https://placebear.com/200/200'
 
 g5 = Game.create drawer: u2, guesser: u1, word: w1, status: 'finished', result: 'win', image: 'https://placekitten.com/200/200'
 
-g6 = Game.create drawer: u2, guesser: u1, word: w1, status: 'finished', result: 'win', image: 'https://placekitten.com/200/200'
+g6 = Game.create drawer: u2, guesser: u1, word: w1, status: 'finished', result: 'win', image: 'https://fillmurray.com/200/200'

@@ -2,16 +2,16 @@
 
 <div class="gallery-container">
 
-  <% if @drawings.present? %>
-    <% @drawings.each do |drawing| %>
+  <% if @games.present? %>
+    <% @games.each do |game| %>
       <div class="gallery-drawing">
-        <%= image_tag drawing.image, class: 'drawing-icon', id: drawing.id %>
-        <span><%= drawing.word.word %> | Drawn on <%= drawing.created_at.strftime("%b %d, %Y") %></span>
+        <%= cl_image_tag game.image, class: 'drawing-icon' %>
+        <span><%= game.word.word %> | Drawn on <%= game.created_at.strftime("%b %d, %Y") %></span>
       </div>
     <% end %>
 
   <% else %>
-    <p>You don't have any drawings yet.</p>
+    <p>You don't have any drawings yet. Play a game!</p>
   <% end %>
 
 </div>
