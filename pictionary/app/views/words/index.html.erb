@@ -12,9 +12,9 @@
   </div>
 
   <div class="gallery-container">
-    <% @drawings.each do |drawing| %>
+    <% @games.each do |game| %>
       <div class="gallery-drawing">
-        <%= image_tag drawing.image, class: 'drawing-icon', id: drawing.id, alt: drawing.word.word %>
+        <%= image_tag game.image, class: 'drawing-icon', id: game.id, alt: game.word %>
       </div>
     <% end %>
   </div>

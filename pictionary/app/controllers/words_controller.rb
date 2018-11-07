@@ -1,10 +1,10 @@
 class WordsController < ApplicationController
   def index
     @words = Word.all.order(:word)
-    @drawings = Drawing.all.sample(6)
+    @games = Game.all.sample(4)
   end
 
   def show
-    render json: Word.find(params[:id]).drawings
+    render json: Word.find(params[:id]).games
   end
 end

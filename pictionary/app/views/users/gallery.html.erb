@@ -5,7 +5,7 @@
   <% if @drawings.present? %>
     <% @drawings.each do |drawing| %>
       <div class="gallery-drawing">
-        <%= image_tag drawing.image, class: 'drawing-icon', id: drawing.id, alt: drawing.word.word %>
+        <%= image_tag drawing.image, class: 'drawing-icon', id: drawing.id %>
         <span><%= drawing.word.word %> | Drawn on <%= drawing.created_at.strftime("%b %d, %Y") %></span>
       </div>
     <% end %>
