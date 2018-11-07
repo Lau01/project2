@@ -1,4 +1,5 @@
 <%# This code is just for the drawer - the mouse event handlers that draw on the canvas %>
+
 <script>
   $(document).ready(function() {
 
@@ -31,11 +32,14 @@
 
       canvasApp.drawOnMove(userInput, xPos, yPos);
 
+      // Only send a websockets message if the correct button was clicked
       if(userInput === 1){
         App.games.perform('drawer_moved', {event: 'mousemove', position: {xPos: xPos, yPos: yPos}, userInput: userInput});
       }
     });
 
+    // Clears the drawer's canvas and sends a websockets message
+    // to clear the guesser's canvas
     $('.clearButton').on('click', function() {
       canvasApp.clearCanvas();
 

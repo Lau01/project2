@@ -1,5 +1,7 @@
 <%# This code is just for the guesser - the correct-guess checking code, which also sends an AJAX game over message %>
+
 <script>
+
   let gameOver;
 
   $(document).ready(function() {
@@ -8,7 +10,7 @@
 
       canvas.toBlob(function(blob){
         // when the blob is ready:
-        
+
         const fd = new FormData();
         fd.append('drawingData', blob);
 
@@ -23,8 +25,10 @@
           processData: false,
           contentType: false
         })
-        .done(App.games.perform('game_over', {status: 'finished'}));
-        // window.location.href = ``;
+        .done(function() {
+          App.games.perform('game_over', {status: 'finished'});
+          window.location.href = "<%= game_result_path(@game) %>";
+        });
       }); // toBlob callback
     }; // gameOver
 
@@ -32,10 +36,12 @@
 
       if (currentWord === $('.guessField').val()) {
         gameOver('won');
+      } else {
+        // TO DO: Let the guesser know their guess was incorrect
       }
 
       return false;
-    }); //click
+    }); // guessButton click handler
 
   });
 </script>
