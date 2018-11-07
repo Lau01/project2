@@ -3,6 +3,7 @@ class GamesController < ApplicationController
   before_action :fetch_user
 
   def home
+    @game = Game.all
     render :home
   end
 

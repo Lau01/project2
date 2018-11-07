@@ -1,12 +1,24 @@
+
 <h2>Instructions</h2>
 
-<div class="instructionsWrapper">
-  <div class="headerInstructions">Draw or guess the word. Click play to play with another user!</div>
-  <div class="instructions drawerInstructions">As the Drawer: Draw the given word. As the Guesser: Try and guess the word that the drawer is trying to draw.</div>
-  <div class=" instructions guesserInstructions">As the Guesser: Try and guess the word that the drawer is trying to draw.</div>
 
-  <div class="playLink">
+<div class="instructions-wrapper">
+  <div class="header-instructions">
+    Draw or guess the word. Click on 'Play' to start a game with another player!
+  </div>
+  <div class="instructions drawer-instructions">
+    As the Drawer: Draw the given word.
+  </div>
+  <div class=" instructions guesser-instructions">
+    As the   Guesser: Try and guess the word that the drawer is trying to draw.
+  </div>
+
+  <div class="play-link">
   <%= link_to 'Play', games_path, method: 'POST', class: 'playLink' %>
   </div>
 
 </div>
+
+<script>
+  $('body').css('background-image', "url(<%= @game.first.image %>)")
+</script>
