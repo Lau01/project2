@@ -17,17 +17,34 @@ $(document).ready(function(){
       received: function(data) {
 
         if(data.status) {
-          // Clear the drawer's canvas before the game starts
-          // const canvas = document.getElementById("canvasElement");
-          // const ctx = canvas.getContext("2d");
-          // ctx.clearRect(0, 0, canvas.width, canvas.height);
-          canvasApp.clearCanvas();
+          if(data.status === 'playing') {
+            // Clear the drawer's canvas before the game starts
+            canvasApp.clearCanvas();
 
-          $('h2.drawer_wait').hide();
-          $('h2.drawer_play').show();
+            // Change the text displayed on the drawer's page
+            $('h2.drawer_wait').hide();
+            $('h2.drawer_play').show();
 
-          // TIMER
-          // setTimeout(function() {alert("Hello");}, 5000);
+            // Set and display a countdown timer for both players
+            let timeLeft = 30;
+
+            const gameTimer = setInterval(function() {
+              $('div.timer').text(timeLeft);
+
+              if(timeLeft <= 0 && role === 'guesser') {
+                clearInterval(gameTimer);
+                gameOver('lost');
+              }
+
+              timeLeft -= 1;
+            }, 1000);
+          } else if (data.status === 'finished') {
+            // NEED TO REDIRECT
+            console.log('FINISHED:', data);
+          } else {
+            // Catch any waiting or cancelled games
+          }
+
         }
 
         if(data.position) {
@@ -44,14 +61,6 @@ $(document).ready(function(){
         if(data.clear) {
           canvasApp.clearCanvas();
         }
-
-        //else if (data.status == 'finished') {
-        //
-        // }
-
-        //else if (data.status == 'cancelled') {
-        //
-        // }
       },
     });
 

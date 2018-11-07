@@ -17,6 +17,10 @@ class GamesChannel < ApplicationCable::Channel
     ActionCable.server.broadcast 'games', status: 'playing'
   end
 
+  def game_over(data)
+    ActionCable.server.broadcast 'games', status: 'finished'
+  end
+
   def drawer_clicked(data)
     ActionCable.server.broadcast 'games', event: data['event'], position: {xPos: data['position']['xPos'], yPos: data['position']['yPos']}
   end
@@ -26,9 +30,6 @@ class GamesChannel < ApplicationCable::Channel
   end
 
   def drawer_moved(data)
-    puts "+++++++++++++++++++++++"
-    puts data
-    puts "+++++++++++++++++++++++"
     ActionCable.server.broadcast 'games', event: data['event'], position: {xPos: data['position']['xPos'], yPos: data['position']['yPos']}, userInput: data['userInput']
   end
 
