@@ -50,6 +50,8 @@ class UsersController < ApplicationController
       return
     end
 
+    @games = Game.where(drawer: @current_user)
+
     @drawings = User.find_by(id: @current_user).drawings
   end
 

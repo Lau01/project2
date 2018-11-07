@@ -16,9 +16,4 @@
   <div class="play-link">
   <%= link_to 'Play', games_path, method: 'POST', class: 'playLink' %>
   </div>
-
 </div>
-
-<script>
-  $('body').css('background-image', "url(<%= @game.first.image %>)")
-</script>

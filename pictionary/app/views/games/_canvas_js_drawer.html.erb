@@ -1,5 +1,7 @@
 <%# This code is just for the drawer - the mouse event handlers that draw on the canvas %>
 
+<script src="/leap.js"></script>
+
 <script>
   $(document).ready(function() {
 
@@ -43,7 +45,10 @@
     $('.clearButton').on('click', function() {
       canvasApp.clearCanvas();
 
-      App.games.perform('clear_canvas', {clear: true});
-    });
-  });
+    App.games.perform('clear_canvas', {clear: true});
+   });
+
+   $('body').append("<div id='cursor'></div>")
+
+});
 </script>
