@@ -10,7 +10,7 @@ $(document).ready(function(){
 
       connected: function() {
         if(role === 'guesser') {
-          App.games.perform('guesser_ready', {game_id: 2});
+          App.games.perform('guesser_ready', {game_id: currentGame});
         }
       },
 

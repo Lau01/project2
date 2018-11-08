@@ -1,6 +1,6 @@
 <script>
 
-  const currentGame = "<%= @game.id %>";
+  const currentGame = <%= @game.id %>;
   const currentWord = "<%= @game.word.word %>";
   const gameOverRedirectURL = "<%= game_result_path(@game) %>"
   let canvasApp;

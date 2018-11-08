@@ -17,6 +17,6 @@ puts "#{Word.all.length} words"
 
 Game.destroy_all
 
-g1 = Game.create drawer_id: u1, guesser_id: u2, word_id: w2, status: 'finished', result: 'win'
+g1 = Game.create drawer_id: u1.id, guesser_id: u2.id, word_id: w2.id, status: 'finished', result: 'win'
 
 puts "#{Game.all.length} games"
