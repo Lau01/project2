@@ -56,7 +56,9 @@ $(document).ready(function(){
             canvasApp.setPosition(data.position.xPos, data.position.yPos);
             canvasApp.drawOnClick();
           } else if (data.event === 'mouseenter') {
+            console.log('mouseenter SETPOS!', data.position);
             canvasApp.setPosition(data.position.xPos, data.position.yPos);
+            console.log('after:', canvasApp.pos);
           } else {
             canvasApp.drawOnMove(data.userInput, data.position.xPos, data.position.yPos)
           }

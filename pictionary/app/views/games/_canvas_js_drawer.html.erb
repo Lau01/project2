@@ -6,6 +6,7 @@
   $(document).ready(function() {
 
     let outOfFrame = true;
+    let isDrawing = false;
 
     //LEAP BOX
     $('#cursor').css({
@@ -13,7 +14,7 @@
       left: offsetX
     });
 
-     let controller = new Leap.Controller({enableGestures: true});
+     let controller = new Leap.Controller();
 
      controller.on("frame", function(frame) {
        <%# if (frame.gestures.length > 0) {
@@ -38,29 +39,33 @@
         const xPos = canvasX + offsetX;
         const yPos = canvasY + offsetY;
 
-        <%# if (outOfFrame) {
-          canvasApp.setPosition(xPos, yPos)
+        if (outOfFrame) {
+          // we WERE out of frame, and now we're not
+          canvasApp.setPosition(xPos, yPos);
           outOfFrame = false;
           //send websocket position update
           App.games.perform('drawer_entered', {
             event: 'mouseenter',
             position: {xPos, yPos}
           });
-        } %>
+        }
 
 
         if (pointable.tipPosition[2] < 0) {
-          $('#cursor').css({ opacity: 1.0 });
 
-          // prevent straight line when coming back in from out of frame
-          if (outOfFrame) {
-            outOfFrame = false;
+          <%# if(!isDrawing){
+            console.warn('JUST STARTED DRAWING')
+            // we have just started drawing again - so send the new start position
+            isDrawing = true;
             App.games.perform('drawer_entered', {
               event: 'mouseenter',
               position: {xPos, yPos}
             });
-            canvasApp.setPosition(xPos, yPos)
-          }
+          } %>
+
+          // do drawing! (z-depth test)
+
+          $('#cursor').css({ opacity: 1.0 });
 
           canvasApp.drawOnMove(1, xPos, yPos);
 
@@ -72,27 +77,35 @@
 
         } else {
           // not drawing, just showing cursor, setting pos
-          canvasApp.setPosition(xPos, yPos)
+
+          App.games.perform('drawer_entered', {
+            event: 'mouseenter',
+            position: {xPos, yPos}
+          });
+
+          canvasApp.setPosition(xPos, yPos);
+
           $('#cursor').css({
             opacity: 0.3,
           });
 
-          <%# App.games.perform('drawer_entered', {
-            event: 'mouseenter',
-            position: {xPos, yPos}
-          }); %>
-        }
+        } // not drawing
+
+
+        // always show cursor if within frame
         $('#cursor').css({
           display: 'block',
-          top: offsetY + canvasY - 25,
-          left: offsetX + canvasX
+          top: yPos - 25,
+          left: xPos
         });
 
 
       } else {
+        // no pointables, i.e. out of frame
         $('#cursor').hide();
         outOfFrame = true;
       }
+
     });
     controller.connect();
 
