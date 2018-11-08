@@ -4,6 +4,98 @@
 <script>
   $(document).ready(function() {
 
+    let outOfFrame = true;
+
+    //LEAP BOX
+    $('#cursor').css({
+      top: offsetY,
+      left: offsetX
+    });
+
+     let controller = new Leap.Controller({enableGestures: true});
+
+     controller.on("frame", function(frame) {
+       <%# if (frame.gestures.length > 0) {
+        for (var i = 0; i < frame.gestures.length; i++) {
+          var gesture = frame.gestures[i];
+          if(gesture.type == "swipe") {
+            canvasApp.clearCanvas();
+           }
+         }
+      } %>
+     if (frame.pointables.length > 0) {
+        //Get a pointable and normalize the tip position
+        let pointable = frame.pointables[0];
+        let interactionBox = frame.interactionBox;
+        let normalizedPosition = interactionBox.normalizePoint(pointable.tipPosition, true);
+
+        // Convert the normalized coordinates to span the canvas
+        let canvasX = canvas.width * normalizedPosition[0];
+        let canvasY = canvas.height * (1 - normalizedPosition[1]);
+        //we can ignore z for a 2D context
+
+        const xPos = canvasX + offsetX;
+        const yPos = canvasY + offsetY;
+
+        <%# if (outOfFrame) {
+          canvasApp.setPosition(xPos, yPos)
+          outOfFrame = false;
+          //send websocket position update
+          App.games.perform('drawer_entered', {
+            event: 'mouseenter',
+            position: {xPos, yPos}
+          });
+        } %>
+
+
+        if (pointable.tipPosition[2] < 0) {
+          $('#cursor').css({ opacity: 1.0 });
+
+          // prevent straight line when coming back in from out of frame
+          if (outOfFrame) {
+            outOfFrame = false;
+            App.games.perform('drawer_entered', {
+              event: 'mouseenter',
+              position: {xPos, yPos}
+            });
+            canvasApp.setPosition(xPos, yPos)
+          }
+
+          canvasApp.drawOnMove(1, xPos, yPos);
+
+          App.games.perform('drawer_moved', {
+            event: 'mousemove',
+            position: {xPos, yPos},
+            userInput: 1
+          });
+
+        } else {
+          // not drawing, just showing cursor, setting pos
+          canvasApp.setPosition(xPos, yPos)
+          $('#cursor').css({
+            opacity: 0.3,
+          });
+
+          <%# App.games.perform('drawer_entered', {
+            event: 'mouseenter',
+            position: {xPos, yPos}
+          }); %>
+        }
+        $('#cursor').css({
+          display: 'block',
+          top: offsetY + canvasY - 25,
+          left: offsetX + canvasX
+        });
+
+
+      } else {
+        $('#cursor').hide();
+        outOfFrame = true;
+      }
+    });
+    controller.connect();
+
+
     // mouse down draws a single circle and sets last known x,y pos as the clicked pos
     $('#canvasElement').mousedown(event => {
       const xPos = event.pageX;
