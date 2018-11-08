@@ -91,3 +91,9 @@ button {
   border: solid 2px blue;
   color: blue;
 }
+
+input[type=text] {
+  border: solid 1px black;
+  padding: 4px;
+  margin-right: 5px;
+}

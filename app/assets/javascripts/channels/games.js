@@ -28,9 +28,9 @@ $(document).ready(function(){
 
             // Set and display a countdown timer for both players
             let timeLeft = 30;
-
+            //
             const gameTimer = setInterval(function() {
-              $('div.timer').text(timeLeft);
+              $('div.timer').text(`Time left: ${timeLeft}`);
 
               // If the countdown timer reaches zero for the guesser,
               // then record a loss and move onto the result page
