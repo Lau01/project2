@@ -32,7 +32,6 @@
 
     $('.guessButton').on('click', function() {
       const currentGuess = $('.guessField').val().toLowerCase();
-      console.log('Guess: ', currentGuess);
 
       if (currentWord === currentGuess) {
         gameOver('won');

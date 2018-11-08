@@ -2,12 +2,12 @@ $(document).ready(() => {
 
   const URL = 'http://localhost:3000/words';
 
-  const updateWordGallery = drawings => {
+  const updateWordGallery = games => {
     $('div.gallery-container').empty();
 
-    drawings.forEach(drawing => {
+    games.forEach(drawing => {
       const $imgTag = $('<img>').attr({
-        src: drawing.image,
+        src: 'http://res.cloudinary.com/bored01/image/upload/' + drawing.image,
         class: 'drawing-icon',
         id: drawing.id
       });

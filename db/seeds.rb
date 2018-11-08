@@ -1,7 +1,9 @@
 User.destroy_all
 
-u1 = User.create name: "Hannah", email: "hannah@pictionary.co", password: "chicken"
-u2 = User.create name: "Andy", email: "andy@pictionary.co", password: "chicken"
+u1 = User.create name: "Hannah", email: "hannah@test.co", password: "chicken"
+
+u2 = User.create name: "Andy",
+email: "andy@test.co", password: "chicken"
 
 puts "#{User.all.length} users"
 
@@ -12,6 +14,11 @@ w2 = Word.create word: "cat"
 w3 = Word.create word: "apple"
 w4 = Word.create word: "bread"
 w5 = Word.create word: "star"
+w6 = Word.create word: "chair"
+w7 = Word.create word: "cup"
+w8 = Word.create word: "face"
+w9 = Word.create word: "shirt"
+w10 = Word.create word: "pants"
 
 puts "#{Word.all.length} words"
 
