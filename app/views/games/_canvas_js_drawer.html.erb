@@ -17,14 +17,7 @@
      let controller = new Leap.Controller();
 
      controller.on("frame", function(frame) {
-       <%# if (frame.gestures.length > 0) {
-        for (var i = 0; i < frame.gestures.length; i++) {
-          var gesture = frame.gestures[i];
-          if(gesture.type == "swipe") {
-            canvasApp.clearCanvas();
-           }
-         }
-      } %>
+
      if (frame.pointables.length > 0) {
         //Get a pointable and normalize the tip position
         let pointable = frame.pointables[0];
@@ -52,16 +45,6 @@
 
 
         if (pointable.tipPosition[2] < 0) {
-
-          <%# if(!isDrawing){
-            console.warn('JUST STARTED DRAWING')
-            // we have just started drawing again - so send the new start position
-            isDrawing = true;
-            App.games.perform('drawer_entered', {
-              event: 'mouseenter',
-              position: {xPos, yPos}
-            });
-          } %>
 
           // do drawing! (z-depth test)
 
