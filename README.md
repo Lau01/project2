@@ -6,8 +6,8 @@ A web game with 2 player multiplayer. A player is assigned as a drawer who draws
 ### Features
 * Two player multiplayer. Each player can see the drawing as it is being drawn.
 * Draw on a canvas with either the mouse or Leap Motion.
+* View a gallery page of all images or sort by words.
 * Users can signup, login and change account details.
-* View all images by the drawing's associated word.
 
 ### Built using
 * HTML/CSS
