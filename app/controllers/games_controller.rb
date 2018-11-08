@@ -4,6 +4,7 @@ class GamesController < ApplicationController
 
   def home
     @game = Game.all
+    @background_image = Game.where.not(image: nil).sample
     render :home
   end
 

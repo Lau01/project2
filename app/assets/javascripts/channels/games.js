@@ -10,7 +10,7 @@ $(document).ready(function(){
 
       connected: function() {
         if(role === 'guesser') {
-          App.games.perform('guesser_ready', {game_id: 2});
+          App.games.perform('guesser_ready', {game_id: currentGame});
         }
       },
 
@@ -34,20 +34,20 @@ $(document).ready(function(){
 
               // If the countdown timer reaches zero for the guesser,
               // then record a loss and move onto the result page
-              if(timeLeft <= 0 && role === 'guesser') {
+              if(timeLeft <= 0) {
+                $('div.timer').empty();
                 clearInterval(gameTimer);
-                gameOver('lost');
+                if(role === 'guesser') {
+                  gameOver('lost');
+                }
               }
-
               timeLeft -= 1;
             }, 1000);
           } else if (data.status === 'finished') {
-            ///// NEED TO REDIRECT /////
-            console.log('FINISHED:', data);
+            setTimeout(function() {window.location.href = gameOverRedirectURL}, 3000);
           } else {
             // Catch any waiting or cancelled games
           }
-
         }
 
         // Handles messages about the drawing
