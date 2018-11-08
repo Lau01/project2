@@ -4,6 +4,9 @@
 
 <div class="game_header">
   <h2 class="guesser_play"><%= @game.guesser.name %> you are guessing!</h2>
+</div>
+
+<div class="game_buttons">
   <%= text_field_tag 'guess', nil, class: 'guessField' %>
   <%= button_tag 'Guess', class: 'guessButton' %>
 </div>
