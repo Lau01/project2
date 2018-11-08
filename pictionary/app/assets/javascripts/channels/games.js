@@ -16,6 +16,7 @@ $(document).ready(function(){
 
       received: function(data) {
 
+        // Handles messages about the game's status
         if(data.status) {
           if(data.status === 'playing') {
             // Clear the drawer's canvas before the game starts
@@ -31,6 +32,8 @@ $(document).ready(function(){
             const gameTimer = setInterval(function() {
               $('div.timer').text(timeLeft);
 
+              // If the countdown timer reaches zero for the guesser,
+              // then record a loss and move onto the result page
               if(timeLeft <= 0 && role === 'guesser') {
                 clearInterval(gameTimer);
                 gameOver('lost');
@@ -39,7 +42,7 @@ $(document).ready(function(){
               timeLeft -= 1;
             }, 1000);
           } else if (data.status === 'finished') {
-            // NEED TO REDIRECT
+            ///// NEED TO REDIRECT /////
             console.log('FINISHED:', data);
           } else {
             // Catch any waiting or cancelled games
@@ -47,6 +50,7 @@ $(document).ready(function(){
 
         }
 
+        // Handles messages about the drawing
         if(data.position) {
           if(data.event === 'click') {
             canvasApp.setPosition(data.position.xPos, data.position.yPos);
@@ -58,12 +62,12 @@ $(document).ready(function(){
           }
         }
 
+        // Handles a clear canvas message
         if(data.clear) {
           canvasApp.clearCanvas();
         }
       },
     });
 
-  } // end test for body.games.play
-
+  } // $(body.games.play)
 });
