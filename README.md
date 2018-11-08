@@ -1,15 +1,15 @@
 # HOW DO YOU DOODLE?
 
 ### Description
-A web game where a drawer draws an image of a randomly assigned word. A guesser will try and guess the word within the time limit. Use either your cursor or a Leap Motion to draw.
+A web game with 2 player multiplayer. A player is assigned as a drawer who draws an image of a randomly assigned word. A guesser will try and guess the word within the time limit. Use either your cursor or a Leap Motion to draw.
 
 ### Features
 * Two player multiplayer. Each player can see the drawing as it is being drawn.
 * Draw on a canvas with either the mouse or Leap Motion.
-* Users can login and signup.
-* View all images drawn by their associated word.
+* Users can signup, login and change account details.
+* View all images by the drawing's associated word.
 
-### Technology used
+### Built using
 * HTML/CSS
 * Canvas element in HTML5
 * JavaScript
@@ -17,8 +17,8 @@ A web game where a drawer draws an image of a randomly assigned word. A guesser 
 * AJAX
 * Ruby
 * Ruby on Rails
-* Leap Motion with Leap.js
+* Leap Motion controls with Leap.js
 * Web Sockets using ActionCable
 
 ### Known Bugs
-* Guesser's drawing sometimes out of sync when using the Leap Motion to draw on the drawer's side.
+* Guesser's drawing is sometimes out of sync when using the Leap Motion to draw.
