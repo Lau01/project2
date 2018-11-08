@@ -6,7 +6,7 @@
     <% @games.each do |game| %>
       <% if game.status == "finished" %>
         <div class="gallery-drawing">
-          <%= cl_image_tag game.image, class: 'drawing-icon', alt: game.word.word %>
+          <%= cl_image_tag game.image, class: 'drawing-icon'%>
           <span><%= game.word.word %> | Drawn on <%= game.created_at.strftime("%b %d, %Y") %></span>
         </div>
       <% end %>
