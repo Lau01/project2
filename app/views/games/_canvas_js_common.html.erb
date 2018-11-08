@@ -1,12 +1,13 @@
 <script>
 
+  const currentGame = "<%= @game.id %>";
   const currentWord = "<%= @game.word.word %>";
+  const gameOverRedirectURL = "<%= game_result_path(@game) %>"
+  let canvasApp;
   let canvas;
   let ctx;
-  let canvasApp;
   let offsetX;
   let offsetY;
-
 
   $(document).ready(function() {
 
@@ -19,8 +20,6 @@
 
     ctx.canvas.width = 400;
     ctx.canvas.height = 500;
-
-
 
     // resize canvas when window is resized
     // function resizeWindow() {
@@ -76,10 +75,6 @@
     // $(window).resize(function() {
     //   resizeWindow();
     // });
-
-
-
-
 
   }); //document ready
 

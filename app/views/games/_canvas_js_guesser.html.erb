@@ -25,16 +25,16 @@
           processData: false,
           contentType: false
         })
-        .done(function() {
-          App.games.perform('game_over', {status: 'finished'});
-          window.location.href = "<%= game_result_path(@game) %>";
-        });
-      }); // toBlob callback
+        .done(App.games.perform('game_over', {status: 'finished'})
+        .fail(console.warn));
+      }); // canvas.toBlob
     }; // gameOver
 
-    $('.guessButton').on('click', function(){
+    $('.guessButton').on('click', function() {
+      const currentGuess = $('.guessField').val().toLowerCase();
+      console.log('Guess: ', currentGuess);
 
-      if (currentWord === $('.guessField').val()) {
+      if (currentWord === currentGuess) {
         gameOver('won');
       } else {
         // TO DO: Let the guesser know their guess was incorrect
