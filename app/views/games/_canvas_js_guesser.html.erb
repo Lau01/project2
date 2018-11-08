@@ -34,7 +34,7 @@
 
     $('.guessButton').on('click', function(){
 
-      if (currentWord === $('.guessField').val()) {
+      if (currentWord === $('.guessField').val().toLowerCase()) {
         gameOver('won');
       } else {
         // TO DO: Let the guesser know their guess was incorrect

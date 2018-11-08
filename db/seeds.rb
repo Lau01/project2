@@ -9,11 +9,16 @@ puts "#{User.all.length} users"
 
 Word.destroy_all
 
-w1 = Word.create word: "Dog"
-w2 = Word.create word: "Cat"
-w3 = Word.create word: "Apple"
-w4 = Word.create word: "Bread"
-w5 = Word.create word: "Star"
+w1 = Word.create word: "dog"
+w2 = Word.create word: "cat"
+w3 = Word.create word: "apple"
+w4 = Word.create word: "bread"
+w5 = Word.create word: "star"
+w6 = Word.create word: "chair"
+w7 = Word.create word: "cup"
+w8 = Word.create word: "face"
+w9 = Word.create word: "shirt"
+w10 = Word.create word: "pants"
 
 puts "#{Word.all.length} words"
 
