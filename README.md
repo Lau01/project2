@@ -1,24 +1,24 @@
-# README
+# HOW DO YOU DOODLE?
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Description
+A web game where a drawer draws an image of a randomly assigned word. A guesser will try and guess the word within the time limit. Use either your cursor or a Leap Motion to draw.
 
-Things you may want to cover:
+### Features
+* Two player multiplayer. Each player can see the drawing as it is being drawn.
+* Draw on a canvas with either the mouse or Leap Motion.
+* Users can login and signup.
+* View all images drawn by their associated word.
 
-* Ruby version
+### Technology used
+* HTML/CSS
+* Canvas element in HTML5
+* JavaScript
+* jQuery
+* AJAX
+* Ruby
+* Ruby on Rails
+* Leap Motion with Leap.js
+* Web Sockets using ActionCable
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Known Bugs
+* Guesser's drawing sometimes out of sync when using the Leap Motion to draw on the drawer's side.

@@ -13,9 +13,11 @@
 
   <div class="gallery-container">
     <% @games.each do |game| %>
-      <div class="gallery-drawing">
-        <%= cl_image_tag game.image, class: 'drawing-icon', id: game.id, alt: game.word %>
-      </div>
+      <% if game.status == "finished" %>
+        <div class="gallery-drawing">
+          <%= cl_image_tag game.image, class: 'drawing-icon', id: game.id, alt: game.word %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 
