@@ -27,7 +27,8 @@ body {
 }
 
 .wrapper {
-  max-width: 65vw;
+  max-width: 880px;
+  /* border: solid black 1px; */
 }
 
 h1 {
@@ -36,7 +37,7 @@ h1 {
   letter-spacing: 4px;
   line-height: 1em;
   text-transform: uppercase;
-  padding-bottom: 15px;
+  padding-bottom: 30px;
 }
 
 .nav-container {
@@ -55,6 +56,10 @@ nav a {
   text-transform: uppercase;
   font-weight: 400;
   letter-spacing: 1px;
+}
+
+nav a:hover {
+  color: blue;
 }
 
 a {
@@ -76,4 +81,13 @@ nav.pages a {
 
 fieldset {
   border: none;
+}
+
+button {
+  padding: 5px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: solid 2px blue;
+  color: blue;
 }
