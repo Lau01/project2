@@ -11,13 +11,14 @@
       canvas.toBlob(function(blob){
         // when the blob is ready:
 
+        // make a new form object called fd
         const fd = new FormData();
+        // append value to fd. If it doesn't exist, make a new key
         fd.append('drawingData', blob);
-
         // this is the result of the game
         fd.append('result', result);
 
-        // ajax POST to games
+        // ajax POST to games with the new fd data.
         $.ajax({
           type: "POST",
           url: "<%= game_over_path(@game) %>",
