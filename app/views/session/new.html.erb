@@ -1,26 +1,47 @@
-<div>
-  <h2>Login<h2>
-</div>
+<h1>How do you doodle?</h1>
 
-<div>
-  <%= form_tag login_path do %>
-    <fieldset>
-      <%= label_tag :email %>
-      <%= email_field_tag :email, nil %>
-    </fieldset>
+<div class="nav-container">
+  <nav class="pages">
+    <%= link_to 'Game', root_path %>
+    <%= link_to 'Gallery', words_path %>
+  </nav>
 
-    <fieldset>
-      <%= label_tag :password %>
-      <%= password_field_tag :password, nil %>
-    </fieldset>
+  <nav class="user-account">
+    <% if @current_user.present? %>
+      <%= link_to 'My Account', edit_user_path(@current_user) %>
+      <%= link_to 'Sign Out', login_path, method: 'delete' %>
+    <% else %>
+      <%= link_to 'Sign In', login_path  %>
+      <%= link_to 'Sign Up', new_user_path %>
+    <% end %>
+  </nav>
 
-    <%= submit_tag 'Login' %>
+</div> <!-- nav-container -->
 
-  <% end %>
-</div>
+<div class="login_container">
 
-<div>
-  <% if flash[:error] %>
-    <strong><%= flash[:error] %></strong>
-  <% end %>
+  <h2>Login</h2>
+
+  <div class="error_message">
+    <% if flash[:error] %>
+      <p><%= flash[:error] %></p>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form_tag login_path do %>
+      <fieldset>
+        <%= label_tag :email %>
+        <%= email_field_tag :email, nil %>
+      </fieldset>
+
+      <fieldset>
+        <%= label_tag :password %>
+        <%= password_field_tag :password, nil %>
+      </fieldset>
+
+      <%= submit_tag 'Login' %>
+
+    <% end %>
+  </div>
 </div>

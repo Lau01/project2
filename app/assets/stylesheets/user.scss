@@ -1,6 +1,19 @@
 // Place all the styles related to the User controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.signup_container, .account_container {
+  margin: 30px 0;
+}
+
+.users label {
+  display: inline-block;
+  width: 200px;
+  padding-bottom: 5px;
+}
+
+.error_message ul {
+  list-style-type: none;
+}
 
 .users.gallery .gallery-container {
   grid-row-gap: 2.5em;

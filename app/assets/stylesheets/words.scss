@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .main-container {
+  margin: 30px 0;
   display: grid;
   grid-template-columns: 1fr 5fr;
 }
@@ -29,4 +30,9 @@
 .words-list li {
   list-style-type: none;
   cursor: pointer;
+}
+
+.all_words {
+  font-weight: 600;
+  text-transform: uppercase;
 }

@@ -37,7 +37,7 @@ h1 {
   letter-spacing: 4px;
   line-height: 1em;
   text-transform: uppercase;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 
 .nav-container {
@@ -81,9 +81,10 @@ nav.pages a {
 
 fieldset {
   border: none;
+  padding-bottom: 20px;
 }
 
-button {
+button, input[type=submit] {
   padding: 5px;
   font-size: 14px;
   text-transform: uppercase;
@@ -92,8 +93,18 @@ button {
   color: blue;
 }
 
-input[type=text] {
+input[type=submit] {
+  margin-top: 10px;
+}
+
+input[type=text], input[type=email], input[type=password] {
   border: solid 1px black;
   padding: 4px;
   margin-right: 5px;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+  padding-bottom: 5px;
 }

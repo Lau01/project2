@@ -1,3 +1,14 @@
+<div class="error_message">
+  <% if flash[:errors].present?  %>
+     <strong>Please correct the following errors:</strong>
+     <ul>
+     <% flash[:errors].each do |error| %>
+       <li><%= error %></li>
+     <% end %>
+   </ul>
+  <% end %>
+</div>
+
 <div>
   <%= form_for @user do |f| %>
 
@@ -22,16 +33,5 @@
     </fieldset>
 
     <%= f.submit %>
-  <% end %>
-</div>
-
-<div>
-  <% if flash[:errors].present?  %>
-     <strong>Please correct the following errors:</strong>
-     <ul>
-     <% flash[:errors].each do |error| %>
-       <li><%= error %></li>
-     <% end %>
-   </ul>
   <% end %>
 </div>
