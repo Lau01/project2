@@ -34,13 +34,25 @@
       const currentGuess = $('.guessField').val().toLowerCase();
 
       if (currentWord === currentGuess) {
+        $('.guessButton').css({
+          border: 'solid 2px #999',
+          color: '#999',
+          pointerEvents: 'none'
+        });
+
+        $('.guessField').css({border: 'solid 2px green', color: 'green'}).val('CORRECT!');
+
         gameOver('won');
       } else {
-        // TO DO: Let the guesser know their guess was incorrect
+        $('.guessField').css({border: 'solid 2px red', color: 'red'}).val('Try Again');
       }
 
       return false;
     }); // guessButton click handler
+
+    $('.guessField').on('focus', function() {
+      $(this).val('').css({border: 'solid 2px #999', color: 'black'})
+    })
 
   });
 </script>
