@@ -20,6 +20,7 @@ A web game with 2 player multiplayer. A player is assigned as a drawer who draws
 * Leap Motion controls with Leap.js
 * Web Sockets using ActionCable
 
+
 ### Known Bugs
 * Guesser's drawing is sometimes out of sync when using the Leap Motion to draw.
 

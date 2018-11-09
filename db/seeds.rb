@@ -24,17 +24,19 @@ puts "#{Word.all.length} words"
 
 Game.destroy_all
 
-g1 = Game.create drawer_id: u1.id, guesser_id: u2.id, word_id: w10.id, status: 'finished', result: 'win', image: "ixottwadygs9g6qhzf4c"
+g1 = Game.create drawer_id: u1.id, guesser_id: u2.id, word_id: w7.id, status: 'finished', result: 'win', image: "xpccnyzjh1zgbn4lkams"
 
-g2 = Game.create drawer_id: u1.id, guesser_id: u2.id, word_id: w9.id, status: 'finished', result: 'win', image: "bht92lvazx5tual88quf"
+g2 = Game.create drawer_id: u1.id, guesser_id: u2.id, word_id: w1.id, status: 'finished', result: 'win', image: "dyhzxnpqwm1aqo7dpk1r"
 
-g3 = Game.create drawer_id: u1.id, guesser_id: u2.id, word_id: w6.id, status: 'finished', result: 'win', image: "hbr1fmgotm51ggzdvn4q"
+g3 = Game.create drawer_id: u1.id, guesser_id: u2.id, word_id: w5.id, status: 'finished', result: 'win', image: "mgvxzpo9kjrwp0tfnfui"
 
-g4 = Game.create drawer_id: u1.id, guesser_id: u2.id, word_id: w5.id, status: 'finished', result: 'win', image: "opaf5jfscwuaezbyn9j4"
+g4 = Game.create drawer_id: u1.id, guesser_id: u2.id, word_id: w5.id, status: 'finished', result: 'win', image: "m5d5mf5sumyl0klan2lq"
 
-g5 = Game.create drawer_id: u1.id, guesser_id: u2.id, word_id: w3.id, status: 'finished', result: 'win', image: "bztamftpdinwyveapsxe"
+g5 = Game.create drawer_id: u1.id, guesser_id: u2.id, word_id: w6.id, status: 'finished', result: 'win', image: "nhgfxm1tc59v4rxncoff"
 
-g6 = Game.create drawer_id: u1.id, guesser_id: u2.id, word_id: w2.id, status: 'finished', result: 'win', image: "hvuv1l3lxfkpwy7e3fgr"
+g6 = Game.create drawer_id: u1.id, guesser_id: u2.id, word_id: w9.id, status: 'finished', result: 'win', image: "gzamqn1auhdt5yzutxvx"
+
+g7 = Game.create drawer_id: u1.id, guesser_id: u2.id, word_id: w4.id, status: 'finished', result: 'win', image: "flvukovtqftbvv2vwuki"
 
 
 
