@@ -51,7 +51,7 @@ $(document).ready(function(){
         }
 
         // Handles messages about the drawing
-        if(data.position) {
+        if(data.position && role === 'guesser') {
           if(data.event === 'click') {
             canvasApp.setPosition(data.position.xPos, data.position.yPos);
             canvasApp.drawOnClick();
