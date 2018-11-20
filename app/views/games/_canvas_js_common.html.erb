@@ -38,6 +38,7 @@
       },
 
       setPosition: function(xPos, yPos) {
+        console.log(`setPosition:`, {xPos, yPos, offsetX, offsetY});
         this.pos.x = xPos - offsetX;
         this.pos.y = yPos - offsetY;
       },
@@ -46,6 +47,8 @@
 
         if (userInput !== 1) return; //which === 1 when left click down
 
+        console.log(`drawOnMove:`, {userInput, xPos, yPos});
+        
         ctx.beginPath(); // begin the drawing path
 
         ctx.lineWidth = 5; // width of line
@@ -60,6 +63,8 @@
 
       // for initial click, draw a circle
       drawOnClick: function() {
+        console.log(`drawOnClick:`);
+
         ctx.beginPath();
         ctx.arc(this.pos.x, this.pos.y, 0.5, 0, 2 * Math.PI); // draws circle
         ctx.fill(); // fill circle

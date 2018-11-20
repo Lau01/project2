@@ -28,7 +28,7 @@ $(document).ready(function(){
 
             // Set and display a countdown timer for both players
             let timeLeft = 30;
-            
+
             const gameTimer = setInterval(function() {
               $('div.timer').text(`Time left: ${timeLeft}`);
 
@@ -56,9 +56,9 @@ $(document).ready(function(){
             canvasApp.setPosition(data.position.xPos, data.position.yPos);
             canvasApp.drawOnClick();
           } else if (data.event === 'mouseenter') {
-            console.log('mouseenter SETPOS!', data.position);
+            // console.log('mouseenter SETPOS!', data.position);
             canvasApp.setPosition(data.position.xPos, data.position.yPos);
-            console.log('after:', canvasApp.pos);
+            // console.log('after:', canvasApp.pos);
           } else {
             canvasApp.drawOnMove(data.userInput, data.position.xPos, data.position.yPos)
           }
