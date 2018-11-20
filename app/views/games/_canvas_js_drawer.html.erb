@@ -101,7 +101,7 @@
       canvasApp.setPosition(xPos, yPos);
       canvasApp.drawOnClick();
 
-      App.games.perform('drawer_clicked', {event: 'click', position: {xPos: xPos, yPos: yPos}});
+      <%# App.games.perform('drawer_clicked', {event: 'click', position: {xPos: xPos, yPos: yPos}}); %>
     });
 
     // mouse enter sets last known x,y pos as the entered pos
@@ -111,7 +111,7 @@
 
       canvasApp.setPosition(xPos, yPos);
 
-      App.games.perform('drawer_entered', {event: 'mouseenter', position: {xPos: xPos, yPos: yPos}});
+      <%# App.games.perform('drawer_entered', {event: 'mouseenter', position: {xPos: xPos, yPos: yPos}}); %>
     });
 
     // on mouse move draws a line from last known x,y to new x,y pos set in the drawOnMove function
@@ -124,7 +124,7 @@
 
       // Only send a websockets message if the correct button was clicked
       if(userInput === 1){
-        App.games.perform('drawer_moved', {event: 'mousemove', position: {xPos: xPos, yPos: yPos}, userInput: userInput});
+        <%# App.games.perform('drawer_moved', {event: 'mousemove', position: {xPos: xPos, yPos: yPos}, userInput: userInput}); %>
       }
     });
 
@@ -133,7 +133,7 @@
     $('.clearButton').on('click', function() {
       canvasApp.clearCanvas();
 
-    App.games.perform('clear_canvas', {clear: true});
+    <%# App.games.perform('clear_canvas', {clear: true}); %>
    });
 
    $('body').append("<div id='cursor'></div>")
