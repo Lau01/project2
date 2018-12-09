@@ -1,23 +1,34 @@
-$(document).ready(function(){
-  // We need to wrap the websockets setup code in a document.ready because
-  // it's going to rely on some JS variables we define in the body of the page,
-  // after this script has loaded: in particular, 'role'
+// Create a client-side subscriber (consumer) to our games channel
 
-  // Only load websockets js on the games play page
+// Creating the subscription relies on some JS variables defined in the body of
+// the document (such as role and currentGame), therefore we need to load it
+// after the document is ready
+$(document).ready(function() {
+
+  // Only load this (sockets) code on the games play page
   if($('body.games.play').length) {
 
+    // Add our new subscription to our consumer and then
+    // subscriptions.create invokes subscribed method in games_channel.rb
     App.games = App.cable.subscriptions.create('GamesChannel', {
 
+      // Action to take after a successful subscription to the games channel
       connected: function() {
+        // Once the guesser has successfully subscribed to the channel,
+        // broadcast a JSON message containing the current game's id
+        // (set in _canvas_js_common.html.rb)
+        // Note: 'guesser_ready' refers to corresponding method in games_channel.rb
         if(role === 'guesser') {
           App.games.perform('guesser_ready', {game_id: currentGame});
         }
       },
 
+      // Action to take after a sockets message has been received
       received: function(data) {
 
-        // Handles messages about the game's status
+        // Handles messages about the game's status received from games_channel.rb
         if(data.status) {
+          // Actions to take when a game is commencing
           if(data.status === 'playing') {
             // Clear the drawer's canvas before the game starts
             canvasApp.clearCanvas();
@@ -32,33 +43,38 @@ $(document).ready(function(){
             const gameTimer = setInterval(function() {
               $('div.timer').text(`Time left: ${timeLeft}`);
 
-              // If the countdown timer reaches zero for the guesser,
-              // then record a loss and move onto the result page
+              // When the countdown timer reaches zero clear the timer
               if(timeLeft <= 0) {
                 $('div.timer').empty();
                 clearInterval(gameTimer);
+                // If the guesser's timer reaches zero, call the gameOver
+                // function in _canvas_js_guesser.html.erb to record a loss
                 if(role === 'guesser') {
                   gameOver('lost');
                 }
               }
+
               timeLeft -= 1;
             }, 1000);
-          } else if (data.status === 'finished') {
-            setTimeout(function() {window.location.href = gameOverRedirectURL}, 3000);
+          }
+          // Actions to take when a game finishes
+          else if (data.status === 'finished') {
+            // Redirect to the games result path using the variable set-up in
+            // _canvas_js_common.html.erb, wait 3 seconds for Cloudinary image upload
+            setTimeout(function() { window.location.href = gameOverRedirectURL }, 3000);
           } else {
-            // Catch any waiting or cancelled games
+            // TO DO: Catch any waiting or cancelled games
           }
         }
 
-        // Handles messages about the drawing
+        // Handles messages about the drawing and broadcasts to the guesser
         if(data.position && role === 'guesser') {
+
           if(data.event === 'click') {
             canvasApp.setPosition(data.position.xPos, data.position.yPos);
             canvasApp.drawOnClick();
           } else if (data.event === 'mouseenter') {
-            // console.log('mouseenter SETPOS!', data.position);
             canvasApp.setPosition(data.position.xPos, data.position.yPos);
-            // console.log('after:', canvasApp.pos);
           } else {
             canvasApp.drawOnMove(data.userInput, data.position.xPos, data.position.yPos)
           }
@@ -70,6 +86,5 @@ $(document).ready(function(){
         }
       },
     });
-
-  } // $(body.games.play)
+  }
 });

@@ -1,11 +1,10 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Specify the production socket URI and pass it through to the consumer
+  # via the action_cable_meta_tag in the head of application.html.erb
   config.web_socket_server_url = "wss://whichdoodle.herokuapp.com/cable"
-
   config.action_cable.allowed_request_origins = ['https://whichdoodle.herokuapp.com', 'http://whichdoodle.herokuapp.com']
-
-
 
   # Code is not reloaded between requests.
   config.cache_classes = true

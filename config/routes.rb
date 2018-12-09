@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  # Serve websocket cable requests in-process
+  # Establish the socket connection (server-side)
+  # ActionCable will establish a WebSocket connection on localhost:3000/cable
+  # and begin listening for socket requests on that URI
+  # Code from: https://blog.heroku.com/real_time_rails_implementing_websockets_in_rails_5_with_action_cable
   mount ActionCable.server => '/cable'
 
   root to: 'games#home'
