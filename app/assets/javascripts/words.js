@@ -1,7 +1,7 @@
 $(document).ready(() => {
 
-  const URL = 'https://whichdoodle.herokuapp.com/words';
-  // const URL = 'http://localhost:3000/words';
+  // const URL = 'https://whichdoodle.herokuapp.com/words';
+  const URL = 'http://localhost:3000/words';
 
   const updateWordGallery = games => {
     $('div.gallery-container').empty();
