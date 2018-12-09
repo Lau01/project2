@@ -5,7 +5,9 @@ class SessionController < ApplicationController
 
     if user.present? && user.authenticate(params[:password])
       session[:user_id] = user.id
-      cookies.signed[:user_id] = session[:user_id]   # for access to user id in ActionCable
+
+      # Gives access to the user id in app/channels/application_cable/connection.rb
+      cookies.signed[:user_id] = session[:user_id]
       redirect_to root_path
     else
       flash[:error] = "Invalid email or password"

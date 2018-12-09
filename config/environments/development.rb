@@ -59,5 +59,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  # Specify the development socket URI and pass it through to the consumer
+  # via the action_cable_meta_tag in the head of application.html.erb
   config.action_cable.url = "ws://localhost:3000/cable"
 end
