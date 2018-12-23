@@ -29,7 +29,7 @@ A web game with 2 player multiplayer. A player is assigned as a drawer who draws
 
 
 ### Known Bugs
-* Guesser's drawing is sometimes out of sync when using the Leap Motion to draw.
+* Does not currently support more than two players at a time.
 
 ### Wishlist
 * Scoring system
