@@ -8,6 +8,7 @@
 
     gameOver = function(result) {
 
+      // Create a blob file with the image created on the canvas
       canvas.toBlob(function(blob){
         // when the blob is ready:
 
@@ -18,7 +19,7 @@
         // this is the result of the game
         fd.append('result', result);
 
-        // ajax POST to games with the new fd data.
+        // ajax POST to games with the new fd data. (blob and result)
         $.ajax({
           type: "POST",
           url: "<%= game_over_path(@game) %>",
@@ -34,23 +35,26 @@
     $('.guessButton').on('click', function() {
       const currentGuess = $('.guessField').val().toLowerCase();
 
+      // If the guess is correct
       if (currentWord === currentGuess) {
         $('.guessButton').css({
           border: 'solid 2px #999',
           color: '#999',
           pointerEvents: 'none'
         });
-
+        // Show green border if correct
         $('.guessField').css({border: 'solid 2px green', color: 'green'}).val('CORRECT!');
 
         gameOver('won');
       } else {
+        // If it is wrong, show red border
         $('.guessField').css({border: 'solid 2px red', color: 'red'}).val('Try Again');
       }
 
       return false;
     }); // guessButton click handler
 
+    // When focus on guessing field
     $('.guessField').on('focus', function() {
       $(this).val('').css({border: 'solid 2px #999', color: 'black'})
     })

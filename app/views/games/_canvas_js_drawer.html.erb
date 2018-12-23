@@ -43,11 +43,10 @@
           });
         }
 
-
+        // Draw! Using a z-depth test
         if (pointable.tipPosition[2] < 0) {
 
-          // do drawing! (z-depth test)
-
+          // To indicate the user is drawing, make the icon fully visible
           $('#cursor').css({ opacity: 1.0 });
 
           canvasApp.drawOnMove(1, xPos, yPos);
@@ -59,7 +58,7 @@
           });
 
         } else {
-          // not drawing, just showing cursor, setting pos
+          // Not drawing, just showing cursor and setting pos
 
           App.games.perform('drawer_entered', {
             event: 'mouseenter',
@@ -68,14 +67,15 @@
 
           canvasApp.setPosition(xPos, yPos);
 
+          // When not drawing, the drawing cursor has a lower opacity to indicate that
           $('#cursor').css({
             opacity: 0.3,
           });
 
-        } // not drawing
+        } // not drawing (if else)
 
 
-        // always show cursor if within frame
+        // Always show cursor if within frame
         $('#cursor').css({
           display: 'block',
           top: yPos - 25,

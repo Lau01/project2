@@ -21,15 +21,6 @@
     ctx.canvas.width = 880;
     ctx.canvas.height = 550;
 
-    // resize canvas when window is resized
-    // function resizeWindow() {
-    //   ctx.canvas.width = window.innerWidth;
-    //   ctx.canvas.height = window.innerHeight;
-    //   offsetX = $('#canvasElement').offset().left;
-    //   offsetY = $('#canvasElement').offset().top;
-    // };
-    // resizeWindow();
-
     // last known x, y pos
     canvasApp = {
       pos: {
@@ -37,18 +28,20 @@
         y: 0
       },
 
+      // Method to set position of x and y and store it
       setPosition: function(xPos, yPos) {
         console.log(`setPosition:`, {xPos, yPos, offsetX, offsetY});
         this.pos.x = xPos - offsetX;
         this.pos.y = yPos - offsetY;
       },
 
+      // Method to draw when cursor is clicked and moving
       drawOnMove: function(userInput, xPos, yPos) {
 
         if (userInput !== 1) return; //which === 1 when left click down
 
         console.log(`drawOnMove:`, {userInput, xPos, yPos});
-        
+
         ctx.beginPath(); // begin the drawing path
 
         ctx.lineWidth = 5; // width of line
@@ -61,7 +54,7 @@
         ctx.stroke(); // draw
       },
 
-      // for initial click, draw a circle
+      // For initial click, draw a circle
       drawOnClick: function() {
         console.log(`drawOnClick:`);
 
@@ -71,15 +64,11 @@
         ctx.stroke();
       },
 
+      // Clearing canvas
       clearCanvas: function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
     }; //canvasApp
-
-    // change canvas to window height/width
-    // $(window).resize(function() {
-    //   resizeWindow();
-    // });
 
   }); //document ready
 
