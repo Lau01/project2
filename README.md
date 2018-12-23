@@ -29,6 +29,7 @@ A web game with 2 player multiplayer. A player is assigned as a drawer who draws
 
 
 ### Known Bugs
+* Sometimes drawer is out of sync with guesser.
 * Does not currently support more than two players at a time.
 
 ### Wishlist
